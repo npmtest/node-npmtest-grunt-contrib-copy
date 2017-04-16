@@ -1,7 +1,5 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <title>Code coverage report for node-npmtest-grunt-contrib-copy/grunt-contrib-copy/tasks/copy.js</title>
+<html lang="en"><head>
+    <title>Code coverage report for node-npmtest-grunt-contrib-copy/node_modules/grunt-contrib-copy/tasks/copy.js</title>
     <meta charset="utf-8">
     <style>
         body, html {
@@ -194,7 +192,7 @@
     <h1 style="font-weight: bold;">
         <a href="https://github.com/npmtest/node-npmtest-grunt-contrib-copy">npmtest-grunt-contrib-copy (v0.0.1)</a>
     </h1>
-    <h1>Code coverage report for <span class="entity">node-npmtest-grunt-contrib-copy/grunt-contrib-copy/tasks/copy.js</span></h1>
+    <h1>Code coverage report for <span class="entity">node-npmtest-grunt-contrib-copy/node_modules/grunt-contrib-copy/tasks/copy.js</span></h1>
     <h2>
         
         Statements: <span class="metric">1.69% <small>(1 / 59)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
@@ -210,11 +208,11 @@
         
         Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
     </h2>
-    <div class="path"><a href="../../../index.html">All files</a> &#187; <a href="index.html">node-npmtest-grunt-contrib-copy/grunt-contrib-copy/tasks/</a> &#187; copy.js</div>
+    <div class="path"><a href="../../../../index.html">All files</a> » <a href="index.html">node-npmtest-grunt-contrib-copy/node_modules/grunt-contrib-copy/tasks/</a> » copy.js</div>
 </div>
 <div class="body">
 <pre><table class="coverage">
-<tr><td class="line-count">1
+<tbody><tr><td class="line-count">1
 2
 3
 4
@@ -483,16 +481,16 @@
 &nbsp;
 'use strict';
 &nbsp;
-module.exports = <span class="fstat-no" title="function not covered" >function(grunt) {</span>
-<span class="cstat-no" title="statement not covered" >  var path = require('path');</span>
-<span class="cstat-no" title="statement not covered" >  var fs = require('fs');</span>
-<span class="cstat-no" title="statement not covered" >  var chalk = require('chalk');</span>
-<span class="cstat-no" title="statement not covered" >  var fileSyncCmp = require('file-sync-cmp');</span>
-<span class="cstat-no" title="statement not covered" >  var isWindows = process.platform === 'win32';</span>
+module.exports = <span class="fstat-no" title="function not covered">function(grunt) {</span>
+<span class="cstat-no" title="statement not covered">  var path = require('path');</span>
+<span class="cstat-no" title="statement not covered">  var fs = require('fs');</span>
+<span class="cstat-no" title="statement not covered">  var chalk = require('chalk');</span>
+<span class="cstat-no" title="statement not covered">  var fileSyncCmp = require('file-sync-cmp');</span>
+<span class="cstat-no" title="statement not covered">  var isWindows = process.platform === 'win32';</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  grunt.registerMultiTask('copy', 'Copy files.', <span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered">  grunt.registerMultiTask('copy', 'Copy files.', <span class="fstat-no" title="function not covered">function() {</span></span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    var options = this.options({</span>
+<span class="cstat-no" title="statement not covered">    var options = this.options({</span>
       encoding: grunt.file.defaultEncoding,
       // processContent/processContentExclude deprecated renamed to process/noProcess
       processContent: false,
@@ -501,111 +499,112 @@ module.exports = <span class="fstat-no" title="function not covered" >function(g
       mode: false
     });
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    var copyOptions = {</span>
+<span class="cstat-no" title="statement not covered">    var copyOptions = {</span>
       encoding: options.encoding,
       process: options.process || options.processContent,
       noProcess: options.noProcess || options.processContentExclude
     };
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    var detectDestType = <span class="fstat-no" title="function not covered" >function(dest) {</span></span>
-<span class="cstat-no" title="statement not covered" >      if (grunt.util._.endsWith(dest, '/')) {</span>
-<span class="cstat-no" title="statement not covered" >        return 'directory';</span>
+<span class="cstat-no" title="statement not covered">    var detectDestType = <span class="fstat-no" title="function not covered">function(dest) {</span></span>
+<span class="cstat-no" title="statement not covered">      if (grunt.util._.endsWith(dest, '/')) {</span>
+<span class="cstat-no" title="statement not covered">        return 'directory';</span>
       } else {
-<span class="cstat-no" title="statement not covered" >        return 'file';</span>
+<span class="cstat-no" title="statement not covered">        return 'file';</span>
       }
     };
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    var unixifyPath = <span class="fstat-no" title="function not covered" >function(filepath) {</span></span>
-<span class="cstat-no" title="statement not covered" >      if (isWindows) {</span>
-<span class="cstat-no" title="statement not covered" >        return filepath.replace(/\\/g, '/');</span>
+<span class="cstat-no" title="statement not covered">    var unixifyPath = <span class="fstat-no" title="function not covered">function(filepath) {</span></span>
+<span class="cstat-no" title="statement not covered">      if (isWindows) {</span>
+<span class="cstat-no" title="statement not covered">        return filepath.replace(/\\/g, '/');</span>
       } else {
-<span class="cstat-no" title="statement not covered" >        return filepath;</span>
+<span class="cstat-no" title="statement not covered">        return filepath;</span>
       }
     };
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    var syncTimestamp = <span class="fstat-no" title="function not covered" >function (src, dest) {</span></span>
-<span class="cstat-no" title="statement not covered" >      var stat = fs.lstatSync(src);</span>
-<span class="cstat-no" title="statement not covered" >      if (path.basename(src) !== path.basename(dest)) {</span>
-<span class="cstat-no" title="statement not covered" >        return;</span>
+<span class="cstat-no" title="statement not covered">    var syncTimestamp = <span class="fstat-no" title="function not covered">function (src, dest) {</span></span>
+<span class="cstat-no" title="statement not covered">      var stat = fs.lstatSync(src);</span>
+<span class="cstat-no" title="statement not covered">      if (path.basename(src) !== path.basename(dest)) {</span>
+<span class="cstat-no" title="statement not covered">        return;</span>
       }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >      if (stat.isFile() &amp;&amp; !fileSyncCmp.equalFiles(src, dest)) {</span>
-<span class="cstat-no" title="statement not covered" >        return;</span>
+<span class="cstat-no" title="statement not covered">      if (stat.isFile() &amp;&amp; !fileSyncCmp.equalFiles(src, dest)) {</span>
+<span class="cstat-no" title="statement not covered">        return;</span>
       }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >      var fd = fs.openSync(dest, isWindows ? 'r+' : 'r');</span>
-<span class="cstat-no" title="statement not covered" >      fs.futimesSync(fd, stat.atime, stat.mtime);</span>
-<span class="cstat-no" title="statement not covered" >      fs.closeSync(fd);</span>
+<span class="cstat-no" title="statement not covered">      var fd = fs.openSync(dest, isWindows ? 'r+' : 'r');</span>
+<span class="cstat-no" title="statement not covered">      fs.futimesSync(fd, stat.atime, stat.mtime);</span>
+<span class="cstat-no" title="statement not covered">      fs.closeSync(fd);</span>
     };
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    var isExpandedPair;</span>
-<span class="cstat-no" title="statement not covered" >    var dirs = {};</span>
-<span class="cstat-no" title="statement not covered" >    var tally = {</span>
+<span class="cstat-no" title="statement not covered">    var isExpandedPair;</span>
+<span class="cstat-no" title="statement not covered">    var dirs = {};</span>
+<span class="cstat-no" title="statement not covered">    var tally = {</span>
       dirs: 0,
       files: 0
     };
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    this.files.forEach(<span class="fstat-no" title="function not covered" >function(filePair) {</span></span>
-<span class="cstat-no" title="statement not covered" >      isExpandedPair = filePair.orig.expand || false;</span>
+<span class="cstat-no" title="statement not covered">    this.files.forEach(<span class="fstat-no" title="function not covered">function(filePair) {</span></span>
+<span class="cstat-no" title="statement not covered">      isExpandedPair = filePair.orig.expand || false;</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >      filePair.src.forEach(<span class="fstat-no" title="function not covered" >function(src) {</span></span>
-<span class="cstat-no" title="statement not covered" >        src = unixifyPath(src);</span>
-<span class="cstat-no" title="statement not covered" >        var dest = unixifyPath(filePair.dest);</span>
+<span class="cstat-no" title="statement not covered">      filePair.src.forEach(<span class="fstat-no" title="function not covered">function(src) {</span></span>
+<span class="cstat-no" title="statement not covered">        src = unixifyPath(src);</span>
+<span class="cstat-no" title="statement not covered">        var dest = unixifyPath(filePair.dest);</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >        if (detectDestType(dest) === 'directory') {</span>
-<span class="cstat-no" title="statement not covered" >          dest = isExpandedPair ? dest : path.join(dest, src);</span>
+<span class="cstat-no" title="statement not covered">        if (detectDestType(dest) === 'directory') {</span>
+<span class="cstat-no" title="statement not covered">          dest = isExpandedPair ? dest : path.join(dest, src);</span>
         }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >        if (grunt.file.isDir(src)) {</span>
-<span class="cstat-no" title="statement not covered" >          grunt.verbose.writeln('Creating ' + chalk.cyan(dest));</span>
-<span class="cstat-no" title="statement not covered" >          grunt.file.mkdir(dest);</span>
-<span class="cstat-no" title="statement not covered" >          if (options.mode !== false) {</span>
-<span class="cstat-no" title="statement not covered" >            fs.chmodSync(dest, (options.mode === true) ? fs.lstatSync(src).mode : options.mode);</span>
+<span class="cstat-no" title="statement not covered">        if (grunt.file.isDir(src)) {</span>
+<span class="cstat-no" title="statement not covered">          grunt.verbose.writeln('Creating ' + chalk.cyan(dest));</span>
+<span class="cstat-no" title="statement not covered">          grunt.file.mkdir(dest);</span>
+<span class="cstat-no" title="statement not covered">          if (options.mode !== false) {</span>
+<span class="cstat-no" title="statement not covered">            fs.chmodSync(dest, (options.mode === true) ? fs.lstatSync(src).mode : options.mode);</span>
           }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >          if (options.timestamp) {</span>
-<span class="cstat-no" title="statement not covered" >            dirs[dest] = src;</span>
+<span class="cstat-no" title="statement not covered">          if (options.timestamp) {</span>
+<span class="cstat-no" title="statement not covered">            dirs[dest] = src;</span>
           }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >          tally.dirs++;</span>
+<span class="cstat-no" title="statement not covered">          tally.dirs++;</span>
         } else {
-<span class="cstat-no" title="statement not covered" >          grunt.verbose.writeln('Copying ' + chalk.cyan(src) + ' -&gt; ' + chalk.cyan(dest));</span>
-<span class="cstat-no" title="statement not covered" >          grunt.file.copy(src, dest, copyOptions);</span>
-<span class="cstat-no" title="statement not covered" >          syncTimestamp(src, dest);</span>
-<span class="cstat-no" title="statement not covered" >          if (options.mode !== false) {</span>
-<span class="cstat-no" title="statement not covered" >            fs.chmodSync(dest, (options.mode === true) ? fs.lstatSync(src).mode : options.mode);</span>
+<span class="cstat-no" title="statement not covered">          grunt.verbose.writeln('Copying ' + chalk.cyan(src) + ' -&gt; ' + chalk.cyan(dest));</span>
+<span class="cstat-no" title="statement not covered">          grunt.file.copy(src, dest, copyOptions);</span>
+<span class="cstat-no" title="statement not covered">          syncTimestamp(src, dest);</span>
+<span class="cstat-no" title="statement not covered">          if (options.mode !== false) {</span>
+<span class="cstat-no" title="statement not covered">            fs.chmodSync(dest, (options.mode === true) ? fs.lstatSync(src).mode : options.mode);</span>
           }
-<span class="cstat-no" title="statement not covered" >          tally.files++;</span>
+<span class="cstat-no" title="statement not covered">          tally.files++;</span>
         }
       });
     });
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    if (options.timestamp) {</span>
-<span class="cstat-no" title="statement not covered" >      Object.keys(dirs).sort(<span class="fstat-no" title="function not covered" >function (a, b) {</span></span>
-<span class="cstat-no" title="statement not covered" >        return b.length - a.length;</span>
-      }).forEach(<span class="fstat-no" title="function not covered" >function (dest) {</span>
-<span class="cstat-no" title="statement not covered" >        syncTimestamp(dirs[dest], dest);</span>
+<span class="cstat-no" title="statement not covered">    if (options.timestamp) {</span>
+<span class="cstat-no" title="statement not covered">      Object.keys(dirs).sort(<span class="fstat-no" title="function not covered">function (a, b) {</span></span>
+<span class="cstat-no" title="statement not covered">        return b.length - a.length;</span>
+      }).forEach(<span class="fstat-no" title="function not covered">function (dest) {</span>
+<span class="cstat-no" title="statement not covered">        syncTimestamp(dirs[dest], dest);</span>
       });
     }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    if (tally.dirs) {</span>
-<span class="cstat-no" title="statement not covered" >      grunt.log.write('Created ' + chalk.cyan(tally.dirs.toString()) + (tally.dirs === 1 ? ' directory' : ' directories'));</span>
+<span class="cstat-no" title="statement not covered">    if (tally.dirs) {</span>
+<span class="cstat-no" title="statement not covered">      grunt.log.write('Created ' + chalk.cyan(tally.dirs.toString()) + (tally.dirs === 1 ? ' directory' : ' directories'));</span>
     }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    if (tally.files) {</span>
-<span class="cstat-no" title="statement not covered" >      grunt.log.write((tally.dirs ? ', copied ' : 'Copied ') + chalk.cyan(tally.files.toString()) + (tally.files === 1 ? ' file' : ' files'));</span>
+<span class="cstat-no" title="statement not covered">    if (tally.files) {</span>
+<span class="cstat-no" title="statement not covered">      grunt.log.write((tally.dirs ? ', copied ' : 'Copied ') + chalk.cyan(tally.files.toString()) + (tally.files === 1 ? ' file' : ' files'));</span>
     }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    grunt.log.writeln();</span>
+<span class="cstat-no" title="statement not covered">    grunt.log.writeln();</span>
   });
 &nbsp;
 };
 &nbsp;
 &nbsp;</pre></td></tr>
-</table></pre>
+</tbody></table></pre>
 </div>
 <div class="footer">
-    <div class="meta">Generated by <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a> at Tue Apr 11 2017 08:15:42 GMT+0000 (UTC)</div>
+    <div class="meta">Generated by <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a> at Sun Apr 16 2017 08:39:14 GMT+0000 (UTC)</div>
 </div>
-</body>
-</html>
+
+
+</body></html>
